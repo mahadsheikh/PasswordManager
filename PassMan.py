@@ -1,4 +1,15 @@
-pwd = input("what is the master password? : ") # needed to encrypt the password
+from cryptography.fernet import Fernet  # using this to encrypt the master password
+
+
+pwd = input("what is the master password? : ") # needed to encrypt the password that we save in the file
+
+# functions to encrypt and decrypt passwords for us
+def write_key(): # this specific functions will be used to generate and save a key that we will later use to encrypt and decrypt (one time use only)
+    key = Fernet.generate_key()
+    with open('key.key','wb') as key_file:
+        key_file.write(key)
+
+
 
 def view():
     with open('password.txt','r') as f:
@@ -6,7 +17,7 @@ def view():
             # print(line.rstrip()) # strips the extra line that is being used to save the password
             data = line.rstrip() #this return a list of string so we split it and use the elements in it
             usr,passw = data.split("|")
-            print("Account Name : ",usr," Password : ",passw)
+            print("Account Name : ",usr,", Password : ",passw)
 
 
 def add():
