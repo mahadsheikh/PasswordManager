@@ -17,10 +17,16 @@ def load_key(): # used to read the key once written
 
 
 master_pwd = input("what is the master password? : ") # needed to encrypt the password that we save in the file
+key = load_key()
+print(key)
+fer = Fernet(key)
+print(fer)
 
 key = load_key() + master_pwd.encode()
+print(master_pwd.encode())
+print(key)
 fer = Fernet(key)
-
+print(fer)
 
 
 def view():
