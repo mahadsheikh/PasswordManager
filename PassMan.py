@@ -3,12 +3,21 @@ from cryptography.fernet import Fernet  # using this to encrypt the master passw
 
 pwd = input("what is the master password? : ") # needed to encrypt the password that we save in the file
 
+
+def load_key(): # used to read the key once written
+    file = open('key.key','rb')
+    key = file.read()
+    file.close()
+    return key
+
+# key = load_key()
 # functions to encrypt and decrypt passwords for us
 def write_key(): # this specific functions will be used to generate and save a key that we will later use to encrypt and decrypt (one time use only)
     key = Fernet.generate_key()
     with open('key.key','wb') as key_file:
         key_file.write(key)
 
+# write_key()     this was only used once to make the file that was for the key
 
 
 def view():
